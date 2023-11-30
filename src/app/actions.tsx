@@ -8,10 +8,28 @@ const connection = mysql.createConnection({
     database: 'epm'
 })
 
+interface Worker {
+    NAME: string
+    PHONE: string
+    EMAIL: string
+    DEPARTMENT: string    
+}
+
 export async function fetchWorkers() {
-    try {
-        return connection.query('SELECT * FROM `workers`')
-    } catch(err) {
-        return { message: 'Something went wrong while fetching workers.'}
-    }
+    return new Promise<Worker[]>((resolve, reject) => {
+        const sql = "SELECT * FROM `workers`"
+        connection.query(sql, (error: any, results: any) => {
+            if(error) {
+                reject(error)
+            }
+
+            const workers = []
+
+            for(let i = 0; i < results.length; i++) {
+                workers.push(results[i])
+            }
+
+            resolve(workers)
+        })
+    })
 }
