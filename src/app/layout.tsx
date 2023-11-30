@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'RC mySQL W/Next.js',
-  description: 'Project created to learn more about mySQL and Next.js',
+  description: 'Project created to learn more about MySQL and Next.js',
 }
 
 export default function RootLayout({
